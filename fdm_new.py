@@ -57,6 +57,13 @@ class dom2d:
         self.subs.append(grid)
         self.sub_bounds.append(boundary)
 
+def conn(data):
+    res=dict()
+    for i in data:
+        vic=data.intersection(set([(i[0]-1,i[1]),(i[0]+1,i[1]),(i[0],i[1]-1),(i[0],i[1]+1)]))
+        res.update({i:list(vic)})
+    return res
+        
 dom=dom2d(-3,3,-3,3,0.1)
 dom.sub([lambda x,y:circle(x,y,-3,-3,2)])
 dom.sub([lambda x,y:circle(x,y,-3,3,2)])
